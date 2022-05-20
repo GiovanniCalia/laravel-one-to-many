@@ -40142,10 +40142,10 @@ if (btnSlugger) {
 var confirmationOverlay = document.querySelector('#confirmation-overlay');
 
 if (confirmationOverlay) {
+  var confirmationForm = confirmationOverlay.querySelector('form');
   document.querySelectorAll('.btn-delete').forEach(function (button) {
     button.addEventListener('click', function () {
       var id = this.closest('li').dataset.id;
-      var confirmationForm = confirmationOverlay.querySelector('form');
       var strAction = confirmationForm.dataset.base.replace('*****', id);
       confirmationForm.action = strAction;
       confirmationOverlay.classList.remove('d-none');
@@ -40153,7 +40153,7 @@ if (confirmationOverlay) {
   });
   var btnNo = document.querySelector('#btn-no');
   btnNo.addEventListener('click', function () {
-    //confirmationForm.action = '';
+    confirmationForm.action = '';
     confirmationOverlay.classList.add('d-none');
   });
 }
@@ -40291,8 +40291,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/john/boolean/laravel-auth/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Users/john/boolean/laravel-auth/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Users/john/boolean/laravel-one-to-many/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Users/john/boolean/laravel-one-to-many/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

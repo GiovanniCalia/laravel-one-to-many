@@ -7,6 +7,7 @@ use Illuminate\Support\Str;
 
 class Post extends Model
 {
+    public $timestamps = false;
     protected $fillable = [
         'title',
         'slug',

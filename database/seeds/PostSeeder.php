@@ -3,6 +3,7 @@
 use Illuminate\Database\Seeder;
 use Faker\Generator as Faker;
 use App\Post;
+use App\User;
 use Illuminate\Support\Str;
 
 class PostSeeder extends Seeder
@@ -19,6 +20,7 @@ class PostSeeder extends Seeder
 
             Post::create([
                 'title'         => $title,
+                'user_id'       => User::inRandomOrder()->first(),
                 'slug'          => Post::generateSlug($title),
                 'creator'       => $faker->name(),
                 'description'   => $faker->text(rand(100, 800)),
