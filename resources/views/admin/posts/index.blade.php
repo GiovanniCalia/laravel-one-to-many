@@ -16,9 +16,11 @@
                 <h3><a href="{{ route('admin.posts.show', $post->id) }}">{{ $post->title }}</a></h3>
                 <div>Created by: <strong>{{ $post->creator }}</strong></div>
                 @if (Auth::user()->id === $post->user_id)
-                <a class="btn btn-primary" href="{{ route('admin.posts.edit', $post->id) }}">Edit</a>
+                   <a class="btn btn-primary" href="{{ route('admin.posts.edit', $post->id) }}">Edit</a>
                 @endif
-                <button class="btn btn-danger btn-delete">Delete</button>
+                @if (Auth::user()->id === $post->user_id)
+                   <button class="btn btn-danger btn-delete">Delete</button>
+                @endif
             </li> 
          @endforeach
      </ol>
