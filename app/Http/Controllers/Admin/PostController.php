@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Post;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
@@ -23,7 +24,7 @@ class PostController extends Controller
             'title'          => 'required|max:255',
             'slug' => [
                 'required',
-                Rule::unique('posts')->ignore($model),
+                Rule::unique('posts')->ignore($model), // 'required|unique:posts|max:255',
                 'max:255'
             ],
             'creator'        => 'required|max:50',
@@ -62,18 +63,11 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-       $request->validate($this->getValidators(null));
-       /* $request->validate([
-            'title'          => 'required|max:255',
-            'slug'           => 'required|unique:posts|max:255',
-            'creator'        => 'required|max:50',
-            'description'    => 'required',
-            'image'          => 'nullable|url|max:255',
-            'date_creation'  => 'required|max:20',
-        ]);*/
+        $request->validate($this->getValidators(null));
+        $saveData = $request->all() + ['user_id' => Auth::user()->id];
 
-        $save = Post::create($request->all());
-        return redirect()->route('admin.posts.show', $save->id); //id
+        $save = Post::create($saveData);
+        return redirect()->route('admin.posts.show', $save->id);
     }
 
     /**
@@ -107,20 +101,11 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        /*$request->validate([
-            'title'          => 'required|max:255',
-            'slug'           => 'required|unique:posts|max:255', //Rule::unique('posts')->ignore($this->id)
-            'creator'        => 'required|max:50',
-            'description'    => 'required',
-            'image'          => 'nullable|url|max:255',
-            'date_creation'  => 'required|max:20',
-        ]);*/
-
         $request->validate($this->getValidators($post));
 
         $post->update($request->all());
 
-        return redirect()->route('admin.posts.show', $post->id);  //id
+        return redirect()->route('admin.posts.show', $post->id);
     }
 
     /**

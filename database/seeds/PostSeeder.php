@@ -20,7 +20,7 @@ class PostSeeder extends Seeder
 
             Post::create([
                 'title'         => $title,
-                'user_id'       => User::inRandomOrder()->first(),
+                'user_id'       => User::inRandomOrder()->first()->id,
                 'slug'          => Post::generateSlug($title),
                 'creator'       => $faker->name(),
                 'description'   => $faker->text(rand(100, 800)),

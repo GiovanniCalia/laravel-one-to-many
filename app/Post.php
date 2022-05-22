@@ -14,7 +14,8 @@ class Post extends Model
         'creator',
         'description',
         'image',
-        'date_creation'
+        'date_creation',
+        'user_id'
     ];
 
     static public function generateSlug($ogStr){
@@ -26,5 +27,9 @@ class Post extends Model
             $_i++;
         }
         return $slug;
+    }
+
+    public function user(){
+        return $this->belongsTo('App\User');
     }
 }
