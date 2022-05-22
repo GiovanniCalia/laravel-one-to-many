@@ -41,7 +41,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::paginate(30);
+        $posts = Post::where('user_id', Auth::user()->id)->paginate(30);
         return view('admin.posts.index', compact('posts'));
     }
 
@@ -89,6 +89,8 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
+        if (Auth::user()->id !== $post->user_id) abort(403);
+
         return view('admin.posts.edit', compact('post'));
     }
 
@@ -101,6 +103,8 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
+        if (Auth::user()->id !== $post->user_id) abort(403);
+
         $request->validate($this->getValidators($post));
 
         $post->update($request->all());
