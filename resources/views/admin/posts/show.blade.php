@@ -13,14 +13,19 @@
         <div>Creation date: <strong>{{ $post->date_creation }}</strong></div>
         <div class="links mt-2">
             <a class="btn btn-primary" href="{{ url()->previous()}}" id="gray">Back</a>
-            <a class="btn btn-primary" href="{{ route('admin.posts.edit', $post->id) }}">Edit</a>
+            @if (Auth::user()->id === $post->user_id)
+                <a class="btn btn-primary" href="{{ route('admin.posts.edit', $post->id) }}">Edit</a>
+            @endif
             <a class="btn btn-primary" href="{{ route('admin.posts.index') }}">Return to posts list</a>
+            <a class="btn btn-primary" href="{{ route('admin.posts.indexUser') }}">Return to my posts list</a>
         </div>
-       <form action="{{ route('admin.posts.destroy', $post->id) }}" method="POST">
+        @if (Auth::user()->id === $post->user_id)
+            <form action="{{ route('admin.posts.destroy', $post->id) }}" method="POST">
                 @csrf
                 @method('DELETE')
                 <button class="btn btn-danger mt-3" onClick="return confirm('Are you sure to delete this comic?')">Delete</button>
-        </form>
+            </form>
+        @endif
     </div>
 </main>
 @endsection

@@ -29,6 +29,7 @@ Route::middleware('auth')
     ->group(function () {
         Route::get('/', 'HomeController@index')->name('home');
         Route::post('/slugger', 'HomeController@slugger')->name('slugger');
+        Route::get('/posts/indexUser', 'PostController@indexUser')->name('posts.indexUser');
         Route::resource('/posts', 'PostController');
     });
 

@@ -17,7 +17,10 @@
 
                     {{ __('You are logged in!') }}
 
-                    <a class="btn btn-primary" href="{{ route('admin.posts.index') }}">Go to posts list</a>
+                    <div>
+                        <a class="btn btn-primary" href="{{ route('admin.posts.indexUser') }}">Go to my posts</a>
+                        <a class="btn btn-primary" href="{{ route('admin.posts.index') }}">Go to posts list</a>
+                    </div>
                 </div>
             </div>
         </div>

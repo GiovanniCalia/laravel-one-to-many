@@ -41,7 +41,15 @@ class PostController extends Controller
      */
     public function index()
     {
+        $posts = Post::paginate(30);
+
+        return view('admin.posts.index', compact('posts'));
+    }
+
+    public function indexUser()
+    {
         $posts = Post::where('user_id', Auth::user()->id)->paginate(30);
+
         return view('admin.posts.index', compact('posts'));
     }
 
@@ -120,9 +128,10 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
+        if (Auth::user()->id !== $post->user_id) abort(403);
+
         $post->delete();
 
-        //return back();
-        return redirect()->route('admin.posts.index');
+        return redirect()->back();
     }
 }
