@@ -19,7 +19,7 @@ class Post extends Model
         'category_id'
     ];
 
-    /*static public function generateSlug($ogStr){
+    static public function generateSlug($ogStr){
         $baseSlug = Str::of($ogStr)->slug('-');
         $slug = $baseSlug;
         $_i = 1;
@@ -28,7 +28,7 @@ class Post extends Model
             $_i++;
         }
         return $slug;
-    }*/
+    }
 
     public function user(){
         return $this->belongsTo('App\User');
