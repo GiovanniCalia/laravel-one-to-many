@@ -21,7 +21,7 @@
                     <label for="slug" class="form-label"><h4>{{ __('slug') }}</h4></label>
                     <input type="text" name="slug" class="form-control" id="slug" value="{{ old('slug') }}">
                   </div>
-                  <input type="button" value="Generate slug" id="btn-slugger">
+                  {{--<input type="button" value="Generate slug" id="btn-slugger">--}}
                   @error('slug')
                     <div class="alert alert-danger">{{ $message }}</div>
                   @enderror
