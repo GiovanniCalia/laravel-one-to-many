@@ -25,6 +25,15 @@
                   @error('slug')
                     <div class="alert alert-danger">{{ $message }}</div>
                   @enderror
+                  <select name="category_id" id="category">
+                    <option value="">Select category</option>
+                    @foreach ($categories as $category)
+                      <option value="{{ $category->id }}">{{ $category->name }}</option>
+                    @endforeach
+                  </select>
+                  @error('category_id')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                  @enderror
                   <div class="mb-3">
                     <label for="creator" class="form-label"><h4>{{ __('creator') }}</h4></label>
                     <input type="text" name="creator" class="form-control" id="creator" value="{{ old('creator') }}">

@@ -14,19 +14,19 @@ class CategorySeeder extends Seeder
     {
         $categories = [
             [
-                'name' => 'Finanza'
+                'name' => 'Finance'
             ],
             [
-                'name' => 'Estero'
+                'name' => 'Abroad'
             ],
             [
                 'name' => 'Sport'
             ],
             [
-                'name' => 'Attualità'
+                'name' => 'Actuality'
             ],
             [
-                'name' => 'Scienze'
+                'name' => 'Science'
             ],
         ];
 
